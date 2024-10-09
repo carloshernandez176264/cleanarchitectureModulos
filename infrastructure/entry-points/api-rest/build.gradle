@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.1.0'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'com.co.ias'
@@ -10,8 +12,24 @@ repositories {
 }
 
 dependencies {
+    // JUnit for testing
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Lombok (add specific version)
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    // H2 Database
+    runtimeOnly 'com.h2database:h2'
+
+    // Spring Boot Web dependency
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.0'
+
+    // Project-specific modules
+    implementation project(':usecase')
+    implementation project(':model')
+
 }
 
 test {
